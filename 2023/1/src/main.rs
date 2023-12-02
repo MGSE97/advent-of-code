@@ -29,6 +29,7 @@ fn sum_calibration_data() -> Result<u32, String> {
         let mut numbers = line.chars().filter_map(|c| char::to_digit(c, 10));
         let first = numbers.next().unwrap_or(0);
         let last = numbers.next_back().unwrap_or(first);
+        println!("{first} {last}");
         
         // Update sum
         sum += first * 10 + last;
@@ -37,6 +38,7 @@ fn sum_calibration_data() -> Result<u32, String> {
             // Reached EOF, stop reading
             break;
         }
+        line.clear();
     }
 
     Ok(sum)
