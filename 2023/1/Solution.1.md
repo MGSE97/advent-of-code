@@ -22,6 +22,8 @@ Describe how we solved it.
 
 Show results.
 
+Your puzzle answer was `55002`.
+
 Permalink_to_part_1_result_file
 
 ---
