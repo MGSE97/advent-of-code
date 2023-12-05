@@ -25,7 +25,7 @@ Describe how we solved it.
 Show results.
 Your puzzle answer was 84538.
 
-<https://github.com/MGSE97/advent-of-code/blob/71d08f56b980c70417156d1ef4896594baafcc1a/2023/2/data/output.2.txt#L1-L4>
+<https://github.com/MGSE97/advent-of-code/blob/71d08f56b980c70417156d1ef4896594baafcc1a/2023/2/data/output.2.txt#L1-L3>
 
 ---
 
