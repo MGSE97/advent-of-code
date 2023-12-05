@@ -4,12 +4,12 @@ pub async fn solve() {
     // Code here
     todo!();
 
-    println!(
+    print!(
         "{prefix}: {question}",
         prefix = "Question".blue(),
         question = "".yellow().bold()
     );
-    println!(
+    print!(
         "{prefix}: {answer}",
         prefix = "  Answer".blue(),
         answer = "".green().bold()

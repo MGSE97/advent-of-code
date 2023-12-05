@@ -1,18 +1,17 @@
 use colored::Colorize;
 
 pub async fn solve() {
-    print!(
+    // Code here
+    todo!();
+
+    println!(
         "{prefix}: {question}",
         prefix = "Question".blue(),
         question = "".yellow().bold()
     );
-
-    // Code here
-    todo!();
-
-    print!(
+    println!(
         "{prefix}: {answer}",
-        prefix = "Answer".blue(),
+        prefix = "  Answer".blue(),
         answer = "".green().bold()
     );
 }
