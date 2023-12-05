@@ -8,7 +8,7 @@ Source: [Advent of Code](https://adventofcode.com/2023/day/1)
 
 ## Solution for Part 1
 
-Permalink_for_part_1_text
+<https://github.com/MGSE97/advent-of-code/blob/2918fa25acf79566ecb38cb8c4bc50ab8215e90d/2023/1/README.md?plain=1#L11-L34>
 
 ### Task
 
@@ -24,7 +24,8 @@ Show results.
 
 Your puzzle answer was `55002`.
 
-Permalink_to_part_1_result_file
+Program output:
+<https://github.com/MGSE97/advent-of-code/blob/2918fa25acf79566ecb38cb8c4bc50ab8215e90d/2023/1/data/output.1.txt#L1-L2>
 
 ---
 
