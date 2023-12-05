@@ -1,0 +1,3 @@
+Games file: ./data/input.txt
+  Question: What is the sum of the power of fewest number of cubes for each game?
+    Answer: 84538

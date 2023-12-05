@@ -1,0 +1,4 @@
+Games file: ./data/input.txt
+ Available: Bag(red: 12, green: 13, blue: 14)
+  Question: What is the sum of the IDs of valid games?
+    Answer: 1867
