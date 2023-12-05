@@ -4,7 +4,7 @@
 
 # --- Day N: Title ---
 
-Source: [Advent of Code](https://adventofcode.com/2023/day/N)
+Source: [Advent of Code](https://adventofcode.com/2023/day/1)
 
 ## Solution for Part 2
 

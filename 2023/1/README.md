@@ -4,7 +4,7 @@
 
 # --- Day 1: Trebuchet?! ---
 
-Source: [Advent of Code](https://adventofcode.com/2023/day/N)
+Source: [Advent of Code](https://adventofcode.com/2023/day/1)
 
 ## Part 1
 
