@@ -1,4 +1,4 @@
-[< Back to day](../README.md)
+[< Back to day](./README.md)
 
 ---
 
@@ -36,10 +36,10 @@ Permalink_to_part_1_result_file
 
 <h6 align="center">
 
-[< Back to day](../README.md)
+[< Back to day](./README.md)
 •>&nbsp; Part 1 &nbsp;<•
-&nbsp; [Part 2](../Solution.2.md) &nbsp; •
-[Continue to part 2 >](../Solution.2.md)
+&nbsp; [Part 2](./Solution.2.md) &nbsp; •
+[Continue to part 2 >](./Solution.2.md)
 
 </h6>
 
