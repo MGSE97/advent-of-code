@@ -48,15 +48,15 @@ Consider your entire calibration document. **What is the sum of all of the calib
 
 ### Solution
 
-First we load calibration file.
+1. First we load calibration file.
 https://github.com/MGSE97/advent-of-code/blob/4fac38fae44539297c829797e2e54216af0bf961/2023/1/src/part1.rs#L35-L37
-Then we read it line by line.
+2. Then we read it line by line.
 https://github.com/MGSE97/advent-of-code/blob/4fac38fae44539297c829797e2e54216af0bf961/2023/1/src/part1.rs#L43-L45
-For each line ve create character iterator, that keeps only digits.
+3. For each line ve create character iterator, that keeps only digits.
 https://github.com/MGSE97/advent-of-code/blob/4fac38fae44539297c829797e2e54216af0bf961/2023/1/src/part1.rs#L48
-Now we're almost done, we take first and last item from iterator.
+4. Now we're almost done, we take first and last item from iterator.
 https://github.com/MGSE97/advent-of-code/blob/4fac38fae44539297c829797e2e54216af0bf961/2023/1/src/part1.rs#L49-L50
-And combine it to number. After that we add it to global sum.
+5. And combine it to number. After that we add it to global sum.
 https://github.com/MGSE97/advent-of-code/blob/4fac38fae44539297c829797e2e54216af0bf961/2023/1/src/part1.rs#L53
 
 ### Results
