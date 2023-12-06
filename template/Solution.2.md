@@ -8,22 +8,28 @@ Source: [Advent of Code](https://adventofcode.com/2023/day/N)
 
 ## Solution for Part 2
 
-Permalink_for_part_2_text
+Copy from README
 
 ### Task
 
-Describe why we cant use part 1.
+- Describe what we need to do.
 
-Describe what we need to do.
+### Edge cases
 
-Describe edge cases, that can cause issues.
+- Describe edge cases, that can cause issues.
 
 ### Solution
 
-Describe how we solved it.
+- Describe each step how we solved it.
+  Perma_link_to_code_part
 
-Show results.
+### Result
 
+Q: Question
+
+A: Answer
+
+Program output:
 Permalink_to_part_2_result_file
 
 ---
