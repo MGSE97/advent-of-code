@@ -8,20 +8,28 @@ Source: [Advent of Code](https://adventofcode.com/2023/day/N)
 
 ## Solution for Part 1
 
-Permalink_for_part_1_text
+Copy from README
 
 ### Task
 
-Describe what we need to do.
+- Describe what we need to do.
 
-Describe edge cases, that can cause issues.
+### Edge cases
+
+- Describe edge cases, that can cause issues.
 
 ### Solution
 
-Describe how we solved it.
+- Describe each step how we solved it.
+  Perma_link_to_code_part
 
-Show results.
+### Result
 
+Q: Question
+
+A: Answer
+
+Program output:
 Permalink_to_part_1_result_file
 
 ---
