@@ -1,6 +1,6 @@
 use colored::Colorize;
 
-pub async fn solve() {
+pub async fn solve() -> Result<(), String> {
     // Code here
     todo!();
 
@@ -14,4 +14,5 @@ pub async fn solve() {
         prefix = "  Answer".blue(),
         answer = "".green().bold()
     );
+    Ok(())
 }

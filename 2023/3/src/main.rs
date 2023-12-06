@@ -3,6 +3,7 @@ use std::env;
 
 mod part1;
 mod part2;
+mod types;
 
 /// Run with part as argument to solve task.
 /// ```sh

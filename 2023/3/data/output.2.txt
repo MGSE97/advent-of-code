@@ -1,0 +1,3 @@
+Engine file: ./data/input.txt
+   Question: What is the sum of all of the gear ratios in your engine schematic?
+     Answer: 75847567
