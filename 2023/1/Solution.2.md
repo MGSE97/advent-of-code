@@ -80,7 +80,7 @@ Program output:
 [< Back to day](../README.md)
 • &nbsp; [Part 1](./Solution.1.md) &nbsp;
 •>&nbsp; Part 2 &nbsp;<•
-[Continue to advent calendar >](../../README.md)
+[Continue to advent calendar >](../README.md)
 
 </h6>
 
