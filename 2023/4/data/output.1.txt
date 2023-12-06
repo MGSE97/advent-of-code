@@ -1,0 +1,3 @@
+Cards file: ./data/input.txt
+  Question: How many points are cards worth in total?
+    Answer: 20667
