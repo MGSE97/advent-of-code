@@ -74,8 +74,8 @@ Program output:
 
 [< Back to day](../README.md)
 •>&nbsp; Part 1 &nbsp;<•
-&nbsp; [Part 2](../Solution.2.md) &nbsp; •
-[Continue to part 2 >](../Solution.2.md)
+&nbsp; [Part 2](./Solution.2.md) &nbsp; •
+[Continue to part 2 >](./Solution.2.md)
 
 </h6>
 
