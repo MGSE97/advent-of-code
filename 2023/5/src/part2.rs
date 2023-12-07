@@ -1,6 +1,7 @@
 use colored::Colorize;
 use itertools::Itertools;
 use rayon::prelude::*;
+use indicatif::*;
 
 use crate::{
     part1::{parse_input, DATA_FILE},
@@ -56,13 +57,6 @@ fn find_closest_location_in_range() -> Result<u64, String> {
             .unwrap(),
     );
 
-    let max_loc = humid_to_loc
-        .ranges
-        .par_iter()
-        .max_by_key(|range| range.target_upper)
-        .map(|range| range.target_upper)
-        .unwrap();
-
     let seed_ranges = input
         .seeds
         .chunks_exact(2)
@@ -76,8 +70,11 @@ fn find_closest_location_in_range() -> Result<u64, String> {
         })
         .collect_vec();
 
+    let max_loc = seed_ranges.iter().map(|&(_, max)| max).max().unwrap();
+
     let min_loc = (0..=max_loc)
         .into_par_iter()
+        .progress_count(max_loc)
         .map(|loc| (loc, humid_to_loc.rmap(loc)))
         .map(|(loc, id)| (loc, temp_to_humid.rmap(id)))
         .map(|(loc, id)| (loc, light_to_temp.rmap(id)))
@@ -88,30 +85,6 @@ fn find_closest_location_in_range() -> Result<u64, String> {
         .find_first(|&(_, id)| seed_ranges.iter().any(|&(min, max)| min <= id && id <= max))
         .map(|(loc, _)| loc)
         .unwrap();
-
-    /*let min_loc = input
-    .seeds
-    .chunks_exact(2)
-    .take(1)
-    .filter_map(|chunk| match chunk.len() == 2 {
-        true => {
-            let seed = chunk[0];
-            let count = chunk[1];
-            (seed..=(seed + count))
-                .into_par_iter()
-                .map(|id| seed_to_soil.map(id))
-                .map(|id| soil_to_fert.map(id))
-                .map(|id| fert_to_water.map(id))
-                .map(|id| water_to_light.map(id))
-                .map(|id| light_to_temp.map(id))
-                .map(|id| temp_to_humid.map(id))
-                .map(|id| humid_to_loc.map(id))
-                .min()
-        }
-        false => None,
-    })
-    .min()
-    .unwrap();*/
 
     Ok(min_loc)
 }

@@ -1,4 +1,3 @@
 Seeds file: ./data/input.txt
   Question: What is the lowest location number that corresponds to any of the initial seed numbers?
-    Answer: 6082853
-    Wrong!
+    Answer: 6082852

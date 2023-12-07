@@ -10,3 +10,4 @@ colored = "2.0"
 tokio = {"version"= "0.2", features=["rt-threaded", "macros"]}
 itertools = "0.12"
 rayon = "1.8"
+indicatif = {version="0.17.7", features=["rayon"]}

@@ -40,7 +40,7 @@ impl Map {
         match self
             .ranges
             .iter()
-            .find(|range| range.lower <= id && id <= range.upper)
+            .find(|range| range.lower <= id && id < range.upper)
         {
             Some(range) => range.target_lower + id - range.lower,
             None => id,
@@ -50,7 +50,7 @@ impl Map {
         match self
             .ranges
             .iter()
-            .find(|range| range.target_lower <= id && id <= range.target_upper)
+            .find(|range| range.target_lower <= id && id < range.target_upper)
         {
             Some(range) => range.lower + id - range.target_lower,
             None => id,
