@@ -1,4 +1,4 @@
-use lib::{solve, Answer};
+use lib::*;
 
 solve! {
     files << "Input" "./data/input.txt"
