@@ -1,5 +1,6 @@
 use colored::Colorize;
-use rayon::{prelude::*, range};
+use itertools::Itertools;
+use rayon::prelude::*;
 
 use crate::{
     part1::{parse_input, DATA_FILE},
@@ -62,28 +63,30 @@ fn find_closest_location_in_range() -> Result<u64, String> {
         .map(|range| range.target_upper)
         .unwrap();
 
-    let min_loc = (0..max_loc)
-        .into_par_iter()
-        .map(|id| humid_to_loc.rmap(id))
-        .map(|id| temp_to_humid.rmap(id))
-        .map(|id| light_to_temp.rmap(id))
-        .map(|id| water_to_light.rmap(id))
-        .map(|id| fert_to_water.rmap(id))
-        .map(|id| soil_to_fert.rmap(id))
-        .map(|id| seed_to_soil.rmap(id))
-        .find_first(|&id| {
-            input
-                .seeds
-                .chunks_exact(2)
-                .any(|chunk| match chunk.len() == 2 {
-                    true => {
-                        let seed = chunk[0];
-                        let count = chunk[1];
-                        seed <= id && id <= seed + count
-                    }
-                    false => false,
-                })
+    let seed_ranges = input
+        .seeds
+        .chunks_exact(2)
+        .filter_map(|chunk| match chunk.len() == 2 {
+            true => {
+                let seed = chunk[0];
+                let count = chunk[1];
+                Some((seed, seed + count))
+            }
+            false => None,
         })
+        .collect_vec();
+
+    let min_loc = (0..=max_loc)
+        .into_par_iter()
+        .map(|loc| (loc, humid_to_loc.rmap(loc)))
+        .map(|(loc, id)| (loc, temp_to_humid.rmap(id)))
+        .map(|(loc, id)| (loc, light_to_temp.rmap(id)))
+        .map(|(loc, id)| (loc, water_to_light.rmap(id)))
+        .map(|(loc, id)| (loc, fert_to_water.rmap(id)))
+        .map(|(loc, id)| (loc, soil_to_fert.rmap(id)))
+        .map(|(loc, id)| (loc, seed_to_soil.rmap(id)))
+        .find_first(|&(_, id)| seed_ranges.iter().any(|&(min, max)| min <= id && id <= max))
+        .map(|(loc, _)| loc)
         .unwrap();
 
     /*let min_loc = input
