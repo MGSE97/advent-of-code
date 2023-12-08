@@ -9,3 +9,4 @@ edition = "2021"
 lib = { path = "../../lib" }
 tokio = {"version"= "0.2", features=["rt-threaded", "macros"]}
 itertools = "0.12"
+prse = "1.1"

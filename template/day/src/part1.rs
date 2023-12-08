@@ -1,5 +1,7 @@
 use lib::*;
 
+use crate::types::Input;
+
 solve! {
     files << "Input" "./data/input.txt"
     "When is the mathematic of tears?"
@@ -7,7 +9,7 @@ solve! {
     answer = get_answer(files.parse_file("Input")?).into()
 }
 
-pub fn get_answer(input: String) -> impl Into<Answer> {
+pub fn get_answer(input: Input) -> impl Into<Answer> {
     // Code from here
     12
 }
