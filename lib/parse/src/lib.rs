@@ -73,8 +73,6 @@ pub fn impl_parse(stream: TokenStream) -> TokenStream {
     let result = options.format_result();
 
     quote! {
-        use ::lib::LexerExt;
-        use ::std::default::Default;
         #[derive(::logos::Logos, Debug, PartialEq)]
         #[logos(skip #skip)]
         pub enum #input {
@@ -82,6 +80,8 @@ pub fn impl_parse(stream: TokenStream) -> TokenStream {
         }
         impl #input {
             pub fn parse(input: &str) -> Result<(#result), String> {
+                use ::lib::LexerExt;
+                use ::std::default::Default;
                 let mut tokens = <Self as ::logos::Logos>::lexer(input);
                 let mut buff: Option<Self> = None;
                 Ok((#mapper))

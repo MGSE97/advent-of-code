@@ -1,10 +1,12 @@
 use lib::parse_args_solution;
 
 mod shared;
-mod types;
 
 mod part1;
+mod types1;
+
 mod part2;
+mod types2;
 
 /// Run with part as argument to solve task.
 /// ```sh

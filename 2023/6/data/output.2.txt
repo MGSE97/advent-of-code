@@ -1,0 +1,5 @@
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+Input file: ./data/input.txt
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  Question: How many ways can you beat the record in this one much longer race?
+    Answer: We get 28228952 ways to beat record.

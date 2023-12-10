@@ -1,0 +1,5 @@
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+Input file: ./data/input.txt
+―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  Question: What do you get if you multiply these numbers together?
+    Answer: We get 1084752 ways to beat record.

@@ -6,8 +6,8 @@ use lib::impl_parse;
 
 #[derive(Debug, Clone)]
 pub struct Input {
-    pub times: Vec<u32>,
-    pub distances: Vec<u32>,
+    pub times: Vec<u64>,
+    pub distances: Vec<u64>,
 }
 
 impl_parse! {
@@ -19,7 +19,7 @@ impl_parse! {
     as {
         Time     "Time"
         Distance "Distance"
-        Number u32 "[0-9]+"
+        Number u64 "[0-9]+"
     }
 }
 
@@ -34,9 +34,9 @@ impl FromStr for Input {
     }
 }
 
-fn get_numbers(arr: Vec<Token>) -> Vec<u32> {
+fn get_numbers(arr: Vec<Token>) -> Vec<u64> {
     arr.into_iter()
-        .filter_map(|time| match time {
+        .filter_map(|token| match token {
             Token::Number(val) => Some(val),
             _ => None,
         })
