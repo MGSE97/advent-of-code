@@ -3,4 +3,5 @@ members = [
     "2023/*",
     "template/*",
     "lib",
+    "lib/parse"
 ]

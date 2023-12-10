@@ -1,21 +1,23 @@
 use std::{
     collections::BTreeMap,
+    fmt::Debug,
     fs::File,
     io::{BufReader, Read},
+    str::FromStr,
 };
-
-use prse::Parse;
 
 pub trait FilesExt {
     fn parse_file<T>(&self, name: &str) -> Result<T, String>
     where
-        T: for<'a> Parse<'a>;
+        T: FromStr,
+        T::Err: Debug;
 }
 
 impl FilesExt for BTreeMap<String, String> {
     fn parse_file<T>(&self, name: &str) -> Result<T, String>
     where
-        T: for<'a> Parse<'a>,
+        T: FromStr,
+        T::Err: Debug,
     {
         parse_file::<T>(
             self.get(name)
@@ -26,7 +28,8 @@ impl FilesExt for BTreeMap<String, String> {
 
 pub fn parse_file<T>(file: &str) -> Result<T, String>
 where
-    T: for<'a> Parse<'a>,
+    T: FromStr,
+    T::Err: Debug,
 {
     // Open file reader
     let file = File::open(file).map_err(|err| format!("Failed to open input file!\n{err}"))?;
@@ -35,5 +38,5 @@ where
     reader
         .read_to_string(&mut data)
         .expect("Input file read failed!");
-    Ok(T::from_str(data.as_str()).expect("Failed to parse input!"))
+    Ok(data.parse().expect("Failed to parse input!"))
 }
