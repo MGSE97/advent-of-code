@@ -83,6 +83,7 @@ pub fn impl_parse(stream: TokenStream) -> TokenStream {
         impl #input {
             pub fn parse(input: &str) -> Result<(#result), String> {
                 let mut tokens = <Self as ::logos::Logos>::lexer(input);
+                let mut buff: Option<Self> = None;
                 Ok((#mapper))
             }
         }

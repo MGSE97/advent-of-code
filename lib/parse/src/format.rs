@@ -15,7 +15,7 @@ pub fn map_format_token(token: &FormatToken, can_throw: bool) -> TokenStream {
             let err = LitStr::new(&token.to_string(), token.span());
             quote_spanned! {
                 token.span() =>
-                tokens.get_token(Self::#matcher, #err)
+                tokens.get_token(&mut buff, Self::#matcher, #err)
             }
         }
         FormatToken::Single(single) => {
