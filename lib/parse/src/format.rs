@@ -78,6 +78,13 @@ pub fn map_format_token(token: &FormatToken, needs_result: bool) -> TokenStream 
                 }
             }
         }
+        FormatToken::Optional(optional) => {
+            let mapper = map_format_token(optional, true);
+            match needs_result {
+                true => quote!(Ok(#mapper.ok())),
+                false => quote!(#mapper.ok()),
+            }
+        }
     }
 }
 
@@ -101,6 +108,10 @@ pub fn map_format_token_types(token: &FormatToken) -> TokenStream {
                 1 => items[0].to_owned(),
                 _ => quote!((#items)),
             }
+        }
+        FormatToken::Optional(optional) => {
+            let inner_type = map_format_token_types(optional);
+            quote!(Option::<#inner_type>)
         }
     }
 }

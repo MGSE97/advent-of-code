@@ -22,6 +22,7 @@ pub enum FormatToken {
     Single(Rc<FormatToken>),
     Multiple(Rc<FormatToken>),
     Group(Vec<FormatToken>),
+    Optional(Rc<FormatToken>),
 }
 
 pub enum ParseToken {
@@ -117,26 +118,37 @@ fn parse_group(
     while !group.is_empty() {
         if group.peek(Ident::peek_any) {
             let ident: Ident = group.parse()?;
-            let plus = group.peek(Token![+]);
+            let plus = group.peek(Token![+]); //|| group.peek2(Token![+]);
+            let optional = group.peek(Token![?]); //|| group.peek2(Token![?]);
             if let Some(found) = tokens.get(&ident.to_string()) {
                 let token = Rc::new(FormatToken::Token((
                     ident,
                     matches!(found, ParseToken::Typed(_, _, _)),
                 )));
-                format.push(match plus {
+                let mut wrapped = match plus {
                     false => FormatToken::Single(token),
                     true => FormatToken::Multiple(token),
-                });
+                };
+                if optional {
+                    wrapped = FormatToken::Optional(Rc::new(wrapped));
+                }
+                format.push(wrapped);
             }
         } else if group.peek(Paren) {
             let inner;
             parenthesized!(inner in group);
 
             let parsed = Rc::new(FormatToken::Group(parse_group(tokens, inner)?));
-            format.push(match group.peek(Token![+]) {
+            let plus = group.peek(Token![+]); // || group.peek2(Token![+]);
+            let optional = group.peek(Token![?]); // || group.peek2(Token![?]);
+            let mut wrapped = match plus {
                 false => FormatToken::Single(parsed),
                 true => FormatToken::Multiple(parsed),
-            });
+            };
+            if optional {
+                wrapped = FormatToken::Optional(Rc::new(wrapped));
+            }
+            format.push(wrapped);
         } else {
             // Skip tokens we don't care about
             let _ = group.parse::<TokenTree>();
