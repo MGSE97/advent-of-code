@@ -1,4 +1,4 @@
-use std::{collections::HashMap, rc::Rc};
+use std::{collections::BTreeMap, rc::Rc};
 
 use proc_macro2::TokenTree;
 use syn::{
@@ -14,7 +14,7 @@ pub struct ParseOptions {
     pub input: Ident,
     pub exclude: LitStr,
     pub format: Vec<FormatToken>,
-    pub tokens: HashMap<String, ParseToken>,
+    pub tokens: BTreeMap<String, ParseToken>,
 }
 
 pub enum FormatToken {
@@ -63,7 +63,7 @@ impl Parse for ParseOptions {
         braced!(token_group in stream);
 
         // parse tokens
-        let mut tokens = HashMap::new();
+        let mut tokens = BTreeMap::new();
         while let Ok(token) = token_group.parse::<ParseToken>() {
             tokens.insert(token.name().to_string(), token);
         }
@@ -110,7 +110,7 @@ impl Parse for ParseToken {
 }
 
 fn parse_group(
-    tokens: &HashMap<String, ParseToken>,
+    tokens: &BTreeMap<String, ParseToken>,
     group: ParseBuffer<'_>,
 ) -> Result<Vec<FormatToken>> {
     let mut format = Vec::new();

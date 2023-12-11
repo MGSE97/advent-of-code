@@ -74,7 +74,7 @@ pub fn impl_parse(stream: TokenStream) -> TokenStream {
 
     quote! {
         #[derive(::logos::Logos, Debug, PartialEq)]
-        #[logos(skip #skip)]
+        #[logos(skip #skip priority=1)]
         pub enum #input {
             #tokens
         }

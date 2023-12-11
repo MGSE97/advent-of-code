@@ -3,9 +3,9 @@ use std::ops::Deref;
 use crate::parse::{FormatToken, ParseOptions, ParseToken};
 use proc_macro2::TokenStream;
 use quote::{quote, quote_spanned};
-use syn::{punctuated::Punctuated, LitStr, Token};
+use syn::{punctuated::Punctuated, LitInt, LitStr, Token};
 
-pub fn map_format_token(token: &FormatToken, can_throw: bool) -> TokenStream {
+pub fn map_format_token(token: &FormatToken, needs_result: bool) -> TokenStream {
     match token {
         FormatToken::Token((token, typed)) => {
             let matcher = match typed {
@@ -19,33 +19,42 @@ pub fn map_format_token(token: &FormatToken, can_throw: bool) -> TokenStream {
             }
         }
         FormatToken::Single(single) => {
-            let mapper = map_format_token(single, can_throw);
-            match can_throw && !matches!(single.deref(), FormatToken::Group(..)) {
-                true => quote!(#mapper?),
-                false => quote!(#mapper),
+            let mapper = map_format_token(single, needs_result);
+            match needs_result || matches!(single.deref(), FormatToken::Group(..)) {
+                false => quote!(#mapper?),
+                true => quote!(#mapper),
             }
         }
         FormatToken::Multiple(multiple) => {
-            let mapper = map_format_token(multiple, false);
+            let mapper = map_format_token(multiple, true);
+            let result = match needs_result {
+                true => quote! {
+                    match items.is_empty() {
+                        true => Err("No values!"),
+                        false => Ok(items)
+                    }
+                },
+                false => quote!(items),
+            };
             quote! {
                 {
                     let mut items = Vec::new();
                     while let Ok(token) = #mapper {
                         items.push(token);
                     }
-                    items
+                    #result
                 }
             }
         }
         FormatToken::Group(group) => {
             let items: Punctuated<_, Token![,]> = group
                 .iter()
-                .map(|item| map_format_token(item, can_throw))
+                .map(|item| map_format_token(item, needs_result))
                 .collect();
-            match (items.len(), can_throw) {
+            match (items.len(), needs_result) {
                 (1, _) => items[0].to_owned(),
-                (_, true) => quote!((#items)),
-                (_, false) => {
+                (_, false) => quote!((#items)),
+                (_, true) => {
                     let mut iter = items.iter();
                     let first = iter.next().unwrap().to_owned();
                     let rest: Punctuated<_, Token![.]> = iter
@@ -54,7 +63,7 @@ pub fn map_format_token(token: &FormatToken, can_throw: bool) -> TokenStream {
                             quote! {
                                 and_then(|prev| {
                                     match #item {
-                                        Ok(val) => Ok((prev, val))
+                                        Ok(val) => Ok((prev, val)),
                                         Err(err) => Err(err)
                                     }
                                 })
@@ -98,19 +107,24 @@ pub fn map_format_token_types(token: &FormatToken) -> TokenStream {
 
 impl ParseOptions {
     pub fn format_tokens(&self) -> Punctuated<TokenStream, Token![,]> {
+        let max_priority = self.tokens.len() + 1;
         self.tokens
             .values()
-            .map(|token| match token {
-                ParseToken::Simple(name, matcher) => quote_spanned! {
-                    name.span() =>
-                    #[token(#matcher)] #name
-                },
-                ParseToken::Typed(name, inner, matcher) => quote_spanned! {
-                    name.span() =>
-                    #[regex(#matcher, ::lib::parse)]
-                    #name(#inner)
-                },
-                ParseToken::Renamed(name, matcher) => todo!(),
+            .enumerate()
+            .map(|(i, token)| {
+                let priority = LitInt::new(&(max_priority - i).to_string(), token.name().span());
+                match token {
+                    ParseToken::Simple(name, matcher) => quote_spanned! {
+                        name.span() =>
+                        #[token(#matcher, priority=#priority)] #name
+                    },
+                    ParseToken::Typed(name, inner, matcher) => quote_spanned! {
+                        name.span() =>
+                        #[regex(#matcher, ::lib::parse, priority=#priority)]
+                        #name(#inner)
+                    },
+                    ParseToken::Renamed(_name, _matcher) => todo!(),
+                }
             })
             .collect()
     }
@@ -118,7 +132,7 @@ impl ParseOptions {
     pub fn format_mapper(&self) -> Punctuated<TokenStream, Token![,]> {
         self.format
             .iter()
-            .map(|item| map_format_token(item, true))
+            .map(|item| map_format_token(item, false))
             .collect()
     }
 

@@ -1,0 +1,12 @@
+[package]
+name = "camel_cards"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lib = { path = "../../lib" }
+tokio = {"version"= "0.2", features=["rt-threaded", "macros"]}
+itertools = "0.12"
+logos = "0.13"
