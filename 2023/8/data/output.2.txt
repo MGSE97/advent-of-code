@@ -1,0 +1,5 @@
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+Input file: ./data/input.txt
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  Question: How many steps does it take before you're only on nodes that end with Z?
+    Answer: We need 15995167053923 steps.

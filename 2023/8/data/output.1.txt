@@ -1,0 +1,5 @@
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+Input file: ./data/input.txt
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  Question: How many steps are required to reach ZZZ from AAA?
+    Answer: We need 20513 steps.
