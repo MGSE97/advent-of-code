@@ -1,0 +1,5 @@
+――――――――――――――――――――――――――――――――――――――――――――――――――――――
+Input file: ./data/input.txt
+――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  Question: What are the total winnings?
+    Answer: Total winnings are 253933213.

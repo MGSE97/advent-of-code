@@ -27,11 +27,13 @@ impl FromStr for Input {
         Ok(Self {
             hands: hands
                 .iter()
-                .map(|(cards, bid)| Hand {
-                    cards: BTreeMap::from_iter(
-                        get_cards(cards).unwrap().into_iter().counts_by(|card| card),
-                    ),
-                    bid: get_number(bid).unwrap_or_default(),
+                .map(|(cards, bid)| {
+                    let cards = get_cards(cards).unwrap();
+                    Hand {
+                        cards,
+                        counts: BTreeMap::from_iter(cards.into_iter().counts_by(|card| card)),
+                        bid: get_number(bid).unwrap_or_default(),
+                    }
                 })
                 .collect_vec(),
         })
@@ -45,7 +47,7 @@ fn get_number(token: &Token) -> Option<usize> {
     }
 }
 
-fn get_cards(token: &Token) -> Option<Vec<Card>> {
+fn get_cards(token: &Token) -> Option<[Card; 5]> {
     match token {
         Token::Cards(val) => Some(val.0.to_owned()),
         _ => None,
@@ -54,13 +56,14 @@ fn get_cards(token: &Token) -> Option<Vec<Card>> {
 
 #[derive(Debug, Clone)]
 pub struct Hand {
-    pub cards: BTreeMap<Card, usize>,
+    pub cards: [Card; 5],
+    pub counts: BTreeMap<Card, usize>,
     pub bid: usize,
 }
 
 impl Hand {
     pub fn rank(&self) -> Rank {
-        let mut values = self.cards.values().sorted().rev().map(|c| c.to_owned());
+        let mut values = self.counts.values().sorted().rev().map(|c| c.to_owned());
         let first = values.next().unwrap_or_default();
         let second = values.next().unwrap_or_default();
         match (first, second) {
@@ -130,7 +133,7 @@ impl FromStr for Card {
 }
 
 #[derive(Debug, Default, PartialEq, Eq)]
-pub struct Cards(Vec<Card>);
+pub struct Cards([Card; 5]);
 
 impl FromStr for Cards {
     type Err = String;
@@ -139,7 +142,9 @@ impl FromStr for Cards {
         Ok(Self(
             s.chars()
                 .map(|c| c.to_string().parse().unwrap_or_default())
-                .collect_vec(),
+                .collect_vec()
+                .try_into()
+                .map_err(|_| "Failed to parse hand!")?,
         ))
     }
 }

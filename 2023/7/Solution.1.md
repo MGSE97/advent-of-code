@@ -16,7 +16,7 @@ Copy from README
 
 ### Edge cases
 
-- Describe edge cases, that can cause issues.
+- In case of equal rank, cards get higher rank, based on first higher card, not by whole hand.
 
 ### Solution
 
