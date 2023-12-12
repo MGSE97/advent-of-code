@@ -1,0 +1,5 @@
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+Input file: ./data/input.txt
+――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  Question: How many steps along the loop does it take to get from the starting position to the point farthest from the starting position?
+    Answer: It takes 6649 steps.
