@@ -69,6 +69,7 @@ pub fn impl_parse(stream: TokenStream) -> TokenStream {
     let input = &options.input;
     let skip = &options.exclude;
     let tokens = options.format_tokens();
+    let helpers = options.format_tokens_helpers();
     let mapper = options.format_mapper();
     let result = options.format_result();
 
@@ -79,6 +80,7 @@ pub fn impl_parse(stream: TokenStream) -> TokenStream {
             #tokens
         }
         impl #input {
+            #helpers
             pub fn parse(input: &str) -> Result<(#result), String> {
                 use ::lib::LexerExt;
                 use ::std::default::Default;

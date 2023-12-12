@@ -1,9 +1,10 @@
 use std::ops::Deref;
 
 use crate::parse::{FormatToken, ParseOptions, ParseToken};
+use convert_case::{Case::Snake, Casing};
 use proc_macro2::TokenStream;
 use quote::{quote, quote_spanned};
-use syn::{punctuated::Punctuated, LitInt, LitStr, Token};
+use syn::{punctuated::Punctuated, Ident, LitInt, LitStr, Token};
 
 pub fn map_format_token(token: &FormatToken, needs_result: bool) -> TokenStream {
     match token {
@@ -136,6 +137,31 @@ impl ParseOptions {
                     },
                     ParseToken::Renamed(_name, _matcher) => todo!(),
                 }
+            })
+            .collect()
+    }
+
+    pub fn format_tokens_helpers(&self) -> TokenStream {
+        self.tokens
+            .values()
+            .filter_map(|token| match token {
+                ParseToken::Simple(..) => None,
+                ParseToken::Typed(name, inner, _matcher) => {
+                    let fn_name = Ident::new(
+                        &format!("into_{}", name.to_string().to_case(Snake)),
+                        name.span(),
+                    );
+                    Some(quote_spanned! {
+                        name.span() =>
+                        pub fn #fn_name(self) -> Option<#inner> {
+                            match self {
+                                Self::#name(val) => Some(val),
+                                _ => None
+                            }
+                        }
+                    })
+                }
+                ParseToken::Renamed(_name, _matcher) => todo!(),
             })
             .collect()
     }

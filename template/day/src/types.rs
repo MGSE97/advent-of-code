@@ -11,7 +11,6 @@ pub struct Input {
     pub strings: Vec<String>,
 }
 
-// ToDo: change this to fit your input
 impl_parse! {
     Token {
         Numbers: Number+
@@ -27,7 +26,6 @@ impl_parse! {
 impl FromStr for Input {
     type Err = String;
     fn from_str(input: &str) -> Result<Self, Self::Err> {
-        // ToDo: change this to fit your input
         let (numbers, strings) = Token::parse(input)?;
         Ok(Self {
             numbers: get_numbers(numbers),
@@ -37,19 +35,9 @@ impl FromStr for Input {
 }
 
 fn get_numbers(arr: Vec<Token>) -> Vec<u32> {
-    arr.into_iter()
-        .filter_map(|time| match time {
-            Token::Number(val) => Some(val),
-            _ => None,
-        })
-        .collect_vec()
+    arr.into_iter().filter_map(Token::into_number).collect_vec()
 }
 
 fn get_strings(arr: Vec<Token>) -> Vec<String> {
-    arr.into_iter()
-        .filter_map(|time| match time {
-            Token::String(val) => Some(val),
-            _ => None,
-        })
-        .collect_vec()
+    arr.into_iter().filter_map(Token::into_string).collect_vec()
 }
