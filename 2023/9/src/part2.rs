@@ -1,15 +1,23 @@
+use itertools::Itertools;
 use lib::*;
 
-use crate::types::Input;
+use crate::{shared::compute_edge_sum, types::Input};
 
 solve! {
-    files << "Input" "./data/input.sm.txt"
-    "For how many seconds he has been leaf on the wind?"
-    "He was leaf for {answer} seconds.",
+    files << "Input" "./data/input.txt"
+    "What is the sum of these extrapolated values?"
+    "The sum is {answer}.",
     answer = get_answer(files.parse_file("Input")?).into()
 }
 
 pub fn get_answer(input: Input) -> impl Into<Answer> {
-    // Code from here
-    252
+    input
+        .values
+        .iter()
+        .map(|history| {
+            // We just reverse input. It behaves same as before.
+            let reversed = history.iter().cloned().rev().collect_vec();
+            compute_edge_sum(reversed)
+        })
+        .sum::<i64>()
 }

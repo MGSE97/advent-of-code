@@ -102,6 +102,8 @@ Analyze your OASIS report and extrapolate the next value for each history. **Wha
 
 ### Edge cases
 
+- When computing deltas, order matters, since they are historical data.
+- We can't use `abs` to compute deltas, since they can be negative.
 - Describe edge cases, that can cause issues.
 
 ### Solution
