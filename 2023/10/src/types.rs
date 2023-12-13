@@ -100,21 +100,15 @@ pub struct TileData {
 
 impl Display for TileData {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let val = self.tile.to_string();
         write!(
             f,
             "{}",
-            match (
-                self.tile == Tile::Start,
-                self.distance.is_some(),
-                self.end,
-                self.path
-            ) {
-                (true, _, _, _) => val.yellow().bold().underline(),
-                (_, _, true, _) => val.red().bold().underline(),
-                (_, _, _, true) => val.green().bold(),
-                (_, true, _, _) => val.cyan(),
-                _ => val.blue(),
+            match self.tile.to_string() {
+                val if self.tile == Tile::Start => val.yellow().bold(),
+                val if self.end => val.red().bold(),
+                val if self.path => val.green().bold(),
+                val if self.distance.is_some() => val.cyan(),
+                val => val.blue(),
             }
         )
     }
