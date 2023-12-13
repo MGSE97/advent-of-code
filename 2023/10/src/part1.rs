@@ -14,13 +14,12 @@ solve! {
 
 pub fn get_answer(mut input: Input) -> impl Into<Answer> {
     // Get strating point position
-    let (x, y) = get_starting_position(&input);
-    println!("\nStart: {x} x {y}\n");
+    let (sx, sy) = get_starting_position(&input);
+    println!("\n{:5} (x = {sx: >3}, y = {sy: >3})", "Start".yellow());
 
     // Create distances map from starting position
-    if let Err(err) = fill_distances(&mut input.tiles, x, y) {
-        show_matrix(&input.tiles);
-        return err;
+    if let Ok((ex, ey)) = fill_distances(&mut input.tiles, sx, sy) {
+        println!("{:5} (x = {ex: >3}, y = {ey: >3})", "End".red());
     };
 
     show_matrix(&input.tiles);

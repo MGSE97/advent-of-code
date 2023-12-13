@@ -3,9 +3,9 @@ use lib::*;
 use crate::types::Input;
 
 solve! {
-    files << "Input" "./data/input.sm.txt"
-    "For how many seconds he has been leaf on the wind?"
-    "He was leaf for {answer} seconds.",
+    files << "Input" "./data/input2.sm2.txt"
+    "How many steps along the loop does it take to get from the starting position to the point farthest from the starting position?"
+    "It takes {answer} steps.",
     answer = get_answer(files.parse_file("Input")?).into()
 }
 

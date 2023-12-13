@@ -28,7 +28,7 @@ pub fn fill_distances(
     tiles: &mut Matrix2D<TileData>,
     col: usize,
     row: usize,
-) -> Result<(), String> {
+) -> Result<(usize, usize), String> {
     // Create buffer to insert next checks
     let mut fill = Vec::<(usize, usize, Option<(usize, usize)>)>::with_capacity(128);
     // Set starting point
@@ -109,6 +109,8 @@ pub fn fill_distances(
         distance += 1;
     }
 
+    let end_pos = longest.unwrap_or_default();
+
     // Mark longes path
     let mut end = true;
     let mut previous = None;
@@ -129,7 +131,7 @@ pub fn fill_distances(
         }
     }
 
-    Ok(())
+    Ok(end_pos)
 }
 
 fn safe_push<T>(
