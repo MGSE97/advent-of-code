@@ -21,6 +21,27 @@ where
     );
 }
 
+pub fn show_matrix_part<T>(matrix: &Matrix2D<T>, pos: (usize, usize))
+where
+    T: Display,
+{
+    let (x, y) = pos;
+    println!(
+        "\r{}",
+        matrix
+            .iter()
+            .skip(if y > 10 { y - 10 } else { 0 })
+            .take(20)
+            .map(|r| r
+                .iter()
+                .skip(if x > 40 { x - 40 } else { 0 })
+                .take(80)
+                .map(|t| t.to_string())
+                .join(""))
+            .join("\n")
+    );
+}
+
 /**
  * Fills distance matrix using flood fill algorithm
 */

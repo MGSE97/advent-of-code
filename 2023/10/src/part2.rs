@@ -1,7 +1,7 @@
 use lib::*;
 
 use crate::{
-    shared::{fill_distances, get_starting_position, show_matrix},
+    shared::{fill_distances, get_starting_position, show_matrix, show_matrix_part},
     types::{Input, TileData},
 };
 
@@ -70,7 +70,7 @@ fn follow_pipes(tiles: &mut Matrix2D<TileData>, end: (usize, usize)) {
         if let Ok(mut data) = tiles.get_mut(x, y) {
             data.end = true;
         }
-        show_matrix(tiles);
+        show_matrix_part(tiles, (x, y));
         if let Ok(mut data) = tiles.get_mut(x, y) {
             data.end = false;
             if let Some(previous) = data.previous {
@@ -79,7 +79,7 @@ fn follow_pipes(tiles: &mut Matrix2D<TileData>, end: (usize, usize)) {
                 break;
             }
         }
-        std::thread::sleep(std::time::Duration::from_millis(100));
-        print!("\n{esc}c", esc = 27 as char);
+        print!("\n{esc}[{up}A", esc = 27 as char, up = tiles.len() + 1);
+        std::thread::sleep(std::time::Duration::from_millis(75));
     }
 }
