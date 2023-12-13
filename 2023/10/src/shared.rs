@@ -3,8 +3,9 @@
 use std::fmt::Display;
 
 use itertools::Itertools;
+use lib::Matrix2D;
 
-use crate::types::{Input, Matrix2D, Tile, TileData};
+use crate::types::{Input, Tile, TileData};
 
 // Move them here once you"re done with both parts
 pub fn show_matrix<T>(matrix: &Matrix2D<T>)
