@@ -13,7 +13,7 @@ where
     T: Display,
 {
     println!(
-        "{}",
+        "\r{}",
         matrix
             .iter()
             .map(|r| r.iter().map(|t| t.to_string()).join(""))

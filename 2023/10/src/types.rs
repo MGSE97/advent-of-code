@@ -108,7 +108,8 @@ impl Display for TileData {
                 val if self.end => val.red().bold(),
                 val if self.path => val.green().bold(),
                 val if self.distance.is_some() => val.cyan(),
-                val => val.blue(),
+                val if self.tile == Tile::Ground => val.blue(),
+                val => val.black(),
             }
         )
     }
