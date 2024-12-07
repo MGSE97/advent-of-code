@@ -42,9 +42,8 @@ Once again consider your left and right lists. **What is their similarity score?
 
 ### Task
 
-- Parse input file into two lists of numbers
-- Sort these list ascending
-- Compute distance between each (e.g. `a-b`)
+- Parse input file into list of numbers, and compute similarity map
+- Compute distance as multiplication of list number with ones similarity (e.g. `a*b`)
 - Return sum of these distances
 
 ### Edge cases
