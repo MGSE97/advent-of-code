@@ -54,22 +54,22 @@ Once again consider your left and right lists. **What is their similarity score?
 ### Solution
 
 1. Loaded whole file into string variable.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L13>
 2. Split it into lines.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L21>
 3. Parsed each line into integer `a` and `b`
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L23>
 4. Added integer `a` into `listA`.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L26>
 5. Updated `similarity` map using integer `b` as key.
    If it existed in map, its value was increased by 1 in map.
    Otherwise, key was added with value `1`.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L29-L34>
 6. Got each element from `listA`, its similarity and computed distance.
    Resulting distance was added to current one.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L39-L43>
 7. Returned resulting distance
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part2/solution.go#L45>
 
 ### Result
 
@@ -78,7 +78,7 @@ Q: What is their similarity score?
 A: Its **18805872**.
 
 Program output:
-Permalink_to_part_2_result_file
+<https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/data/part_2.out.txt#L1-L9>
 
 ---
 

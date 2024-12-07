@@ -65,21 +65,21 @@ Your actual left and right lists contain many location IDs. **What is the total 
 ### Solution
 
 1. Loaded whole file into string variable.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L14>
 2. Split it into lines.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L22>
 3. Parsed each line into integer `a` and `b`
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L24>
 4. Added these integers into lists.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L26-L29>
 5. Sorted each of these lists.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L33-L34>
 6. Got each element from lists and computed distance.
    If it was negative, it was inverted using `Abs` function.
    Resulting distance was added to current one.
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L37-L41>
 7. Returned resulting distance
-   Perma_link_to_code_part
+   <https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/src/part1/solution.go#L43>
 
 ### Result
 
@@ -88,7 +88,7 @@ Q: What is the total distance between your lists?
 A: Its **3714264**.
 
 Program output:
-Permalink_to_part_1_result_file
+<https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/data/part_1.out.txt#L1-L9>
 
 ---
 
