@@ -2,6 +2,7 @@ package solve
 
 import (
 	"lets/src/part1"
+	"lets/src/part2"
 	"lets/src/shared"
 
 	"github.com/spf13/cobra"
@@ -21,7 +22,7 @@ func createResolvers() map[int]cobra.Command {
 			2,
 			"For how many seconds he has been leaf on the wind?", 
 			"He was leaf for %s seconds.", 
-			part1.Resolve,
+			part2.Resolve,
 		),
 	}
 }

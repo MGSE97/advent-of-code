@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -44,7 +45,7 @@ func InitConfig(file string, part int) {
 	// If a config file is found, read it into memory.
 	cerr := viper.ReadInConfig()
 	if cerr == nil {
-		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+		fmt.Fprintln(os.Stdout, "Using config file:", filepath.Base(viper.ConfigFileUsed()))
 	} else {
 		fmt.Fprintln(os.Stderr, "Missing config file:", fmt.Sprintf("%s.toml", fileName))
 		cobra.CheckErr(cerr)

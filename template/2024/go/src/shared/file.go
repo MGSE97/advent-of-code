@@ -13,8 +13,9 @@ func ReadFile(key string) string {
 	wd, err := os.Getwd()
 	cobra.CheckErr(err)
 
-	file := filepath.Join(wd, "data", viper.GetString(key))
-	fmt.Printf("Using file '%s' from %s\n", key, file)
+	name := viper.GetString(key)
+	file := filepath.Join(wd, "data", name)
+	fmt.Printf("Reading file '%s' from '%s'\n", key, name)
 
 	dat, err := os.ReadFile(file)
     cobra.CheckErr(err)

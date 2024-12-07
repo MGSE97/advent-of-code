@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func CreateResolver(part int, question string, answer string, resolver func(cmd *cobra.Command, args []string) string) cobra.Command {
+func CreateResolver[T comparable](part int, question string, answer string, resolver func(cmd *cobra.Command, args []string) T) cobra.Command {
 	handler := func(cmd *cobra.Command, args []string) {
 		fmt.Printf("Part %d.:\n", part)
 		fmt.Println("----------------------------------------------------------------------------------------------------------------")
