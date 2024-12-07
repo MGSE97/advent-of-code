@@ -1,11 +1,13 @@
 package part2
 
 import (
-	"fmt"
+	"lets/src/shared"
 
 	"github.com/spf13/cobra"
 )
 
-func resolve(cmd *cobra.Command, args []string) {
-	fmt.Println("2 called")
+func Resolve(cmd *cobra.Command, args []string) string {
+	// Todo: Put resolver code here
+	input := shared.ReadFile("input")
+	return input
 }
