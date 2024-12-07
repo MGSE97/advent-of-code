@@ -88,7 +88,7 @@ Q: What is the total distance between your lists?
 A: Its **3714264**.
 
 Program output:
-<https://github.com/MGSE97/advent-of-code/blob/af1a060c8d752be6e8ddd351efba9e3e026d2ed0/2024/1/data/part_1.out.txt#L1-L9>
+<https://github.com/MGSE97/advent-of-code/blob/f177db212291637a3635580da5fe465e16997735/2024/1/data/part_1.out.txt#L1-L9>
 
 ---
 
