@@ -16,7 +16,6 @@ func createResolvers() map[int]cobra.Command {
 			"Its %d.", 
 			part1.Resolve,
 		),
-		// ToDo: Update this question and answer
 		2: shared.CreateResolver(
 			2,
 			"What is their similarity score?", 
